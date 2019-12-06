@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <a class="btn btn-primary" href='{%url 'main:marctemplate-add' %}'> + Add New Template</a>
+
+    {% if All_MarcTemplate %}
+        <table border="1" width=100%>
+            {% for MarcTemplate in All_MarcTemplate %}
+              <tr>
+                  <td>{{MarcTemplate.MarcTemplateTitle}}</td>
+                  <td>{{MarcTemplate.Description}} </td>
+                  <td>{{MarcTemplate.jsonObject}}</td>
+                  <td>
+                      <a href="{% url 'main:marctemplate-edit' MarcTemplate.pk  %}"> >Edit</a>
+                      <a href="{% url 'main:marctemplate-delete' MarcTemplate.pk %}"> Delete</a>
+                  </td>
+              </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}
