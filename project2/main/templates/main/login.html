@@ -1,0 +1,23 @@
+
+{% extends  'home.html' %}
+
+ {% block contents  %}
+
+    {%if username %}
+        You are : <strong>{{username}}</strong>
+
+        <form action="/main/upload/" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+    {%else%}
+        <form name = "form"  method = "POST" >
+            {% csrf_token %}
+            <input type = "text"  placeholder = "Identifiant" name = "username" />
+            <input type = "password"  placeholder = "password" name = "password" />
+            <input type = "submit" value="submit" >          
+        </form>
+    {%endif %}
+
+ {% endblock%}

@@ -1,0 +1,22 @@
+
+{% extends  'home.html' %}
+
+{% block contents  %}
+
+    {% if user_form.errors  %}
+        {{user_form.errors}}
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token%}
+
+        {% for field in user_form  %}
+            <label>{{field.label_tag}}</label>
+            {{field}}
+            <div>{{field.errors}}</div>
+        {% endfor%}
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+{% endblock%}
